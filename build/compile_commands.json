@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/david/Altele/Proiecte/cpp/Emulator/build",
+  "command": "/usr/bin/g++ -I/home/david/Altele/Proiecte/cpp/Emulator/includes -g -std=c++17 -o CMakeFiles/DFA.dir/src/CPU.cpp.o -c /home/david/Altele/Proiecte/cpp/Emulator/src/CPU.cpp",
+  "file": "/home/david/Altele/Proiecte/cpp/Emulator/src/CPU.cpp",
+  "output": "CMakeFiles/DFA.dir/src/CPU.cpp.o"
+},
+{
+  "directory": "/home/david/Altele/Proiecte/cpp/Emulator/build",
+  "command": "/usr/bin/g++ -I/home/david/Altele/Proiecte/cpp/Emulator/includes -g -std=c++17 -o CMakeFiles/DFA.dir/src/main.cpp.o -c /home/david/Altele/Proiecte/cpp/Emulator/src/main.cpp",
+  "file": "/home/david/Altele/Proiecte/cpp/Emulator/src/main.cpp",
+  "output": "CMakeFiles/DFA.dir/src/main.cpp.o"
+}
+]

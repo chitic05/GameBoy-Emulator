@@ -1,0 +1,22 @@
+# ninja log v5
+4	56	1774460654783273157	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+57	176	1774460654889273491	build.ninja	abd7ac2c96d0b0a4
+5	41	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+44	164	1774460655060274024	CMakeFiles/DFA.dir/src/main.cpp.o	eaf3e92aa1fe3849
+1	26	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+2	27	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+2	36	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+36	778	1774460726274256496	CMakeFiles/DFA.dir/src/CPU.cpp.o	e3c30d4408cca474
+2	21	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+3	24	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+2	23	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+25	539	1774463087443367643	CMakeFiles/DFA.dir/src/CPU.cpp.o	e3c30d4408cca474
+3	24	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+1	22	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+23	501	1774463139208731786	CMakeFiles/DFA.dir/src/CPU.cpp.o	e3c30d4408cca474
+2	20	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+22	481	1774463416933885380	CMakeFiles/DFA.dir/src/CPU.cpp.o	e3c30d4408cca474
+3	21	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+23	489	1774463729480673523	CMakeFiles/DFA.dir/src/CPU.cpp.o	e3c30d4408cca474
+1	19	0	/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs	d2033a362fcf85e0
+20	506	1774463766435416819	CMakeFiles/DFA.dir/src/CPU.cpp.o	e3c30d4408cca474

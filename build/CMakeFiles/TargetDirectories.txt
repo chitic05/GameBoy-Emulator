@@ -1,0 +1,3 @@
+/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/DFA.dir
+/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/edit_cache.dir
+/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/rebuild_cache.dir
