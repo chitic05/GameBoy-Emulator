@@ -45,3 +45,24 @@ const uint16_t CPU::readRegister(const RegsID id) const{
             return 0;
     }
 }
+
+void CPU::writeRegister(const RegsID id,const uint16_t value){
+    if(id >= RegsID::A && id <= RegsID::L){
+    }
+    switch(id){
+        case RegsID::AF:
+            
+            break;
+        case RegsID::BC:
+            
+            break;
+        case RegsID::DE:
+            
+            break;
+        case RegsID::HL:
+            
+            break;
+        default:
+    }
+}
+
