@@ -125,6 +125,17 @@ void CPU::execute(uint8_t opcode){
     auto readFlagC = [this]() -> bool {
         return (this->registers[static_cast<uint8_t>(RegsID::F)] & 0x10) != 0;
     };
+    auto writeFlags = [this](bool z, bool n, bool h, bool c){
+        this->flags.zero = z;
+        this->flags.subtraction = n;
+        this->flags.halfCarry = h;
+        this->flags.carry = c;
+        this->registers[static_cast<uint8_t>(RegsID::F)] =
+            (static_cast<uint8_t>(z) << 7) |
+            (static_cast<uint8_t>(n) << 6) |
+            (static_cast<uint8_t>(h) << 5) |
+            (static_cast<uint8_t>(c) << 4);
+    };
 
     switch(opcode){
         case 0x00: // NOP
@@ -142,6 +153,14 @@ void CPU::execute(uint8_t opcode){
         case 0x26: this->writeRegister(RegsID::H, this->fetch()); break;
         case 0x2E: this->writeRegister(RegsID::L, this->fetch()); break;
         case 0x3E: this->writeRegister(RegsID::A, this->fetch()); break;
+
+        // Flag control
+        case 0x37: // SCF
+            writeFlags(readFlagZ(), false, false, true);
+            break;
+        case 0x3F: // CCF
+            writeFlags(readFlagZ(), false, false, !readFlagC());
+            break;
 
         // LD rr, d16
         case 0x01: {
