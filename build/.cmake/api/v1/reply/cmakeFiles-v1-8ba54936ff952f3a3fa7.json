@@ -130,8 +130,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/home/david/Altele/Proiecte/cpp/Emulator/build",
-		"source" : "/home/david/Altele/Proiecte/cpp/Emulator"
+		"build" : "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build",
+		"source" : "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator"
 	},
 	"version" : 
 	{

@@ -35,5 +35,4 @@ void Memory::writeMemory16(uint16_t address, uint16_t value){
     }catch(const std::exception& e){
         std::cerr << "Can't write to [ " << address << " ]"<< e.what() << '\n'; 
     }
-    
 }

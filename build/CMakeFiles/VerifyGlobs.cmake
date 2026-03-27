@@ -3,12 +3,13 @@
 cmake_policy(SET CMP0009 NEW)
 
 # MY_SOURCES at CMakeLists.txt:9 (file)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/david/Altele/Proiecte/cpp/Emulator/src/*.cpp")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/*.cpp")
 set(OLD_GLOB
-  "/home/david/Altele/Proiecte/cpp/Emulator/src/CPU.cpp"
-  "/home/david/Altele/Proiecte/cpp/Emulator/src/main.cpp"
+  "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/CPU.cpp"
+  "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/Memory.cpp"
+  "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/main.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "/home/david/Altele/Proiecte/cpp/Emulator/build/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build/CMakeFiles/cmake.verify_globs")
 endif()
