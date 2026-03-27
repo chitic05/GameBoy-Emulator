@@ -56,6 +56,13 @@ build CMakeFiles/Emulator.dir/src/CPU.cpp.o: CXX_COMPILER__Emulator_unscanned_De
   OBJECT_DIR = CMakeFiles/Emulator.dir
   OBJECT_FILE_DIR = CMakeFiles/Emulator.dir/src
 
+build CMakeFiles/Emulator.dir/src/Emulator.cpp.o: CXX_COMPILER__Emulator_unscanned_Debug /home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/Emulator.cpp || cmake_object_order_depends_target_Emulator
+  DEP_FILE = CMakeFiles/Emulator.dir/src/Emulator.cpp.o.d
+  FLAGS = -g -std=c++17
+  INCLUDES = -I/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/includes
+  OBJECT_DIR = CMakeFiles/Emulator.dir
+  OBJECT_FILE_DIR = CMakeFiles/Emulator.dir/src
+
 build CMakeFiles/Emulator.dir/src/Memory.cpp.o: CXX_COMPILER__Emulator_unscanned_Debug /home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/Memory.cpp || cmake_object_order_depends_target_Emulator
   DEP_FILE = CMakeFiles/Emulator.dir/src/Memory.cpp.o.d
   FLAGS = -g -std=c++17
@@ -78,7 +85,7 @@ build CMakeFiles/Emulator.dir/src/main.cpp.o: CXX_COMPILER__Emulator_unscanned_D
 #############################################
 # Link the executable Emulator
 
-build Emulator: CXX_EXECUTABLE_LINKER__Emulator_Debug CMakeFiles/Emulator.dir/src/CPU.cpp.o CMakeFiles/Emulator.dir/src/Memory.cpp.o CMakeFiles/Emulator.dir/src/main.cpp.o
+build Emulator: CXX_EXECUTABLE_LINKER__Emulator_Debug CMakeFiles/Emulator.dir/src/CPU.cpp.o CMakeFiles/Emulator.dir/src/Emulator.cpp.o CMakeFiles/Emulator.dir/src/Memory.cpp.o CMakeFiles/Emulator.dir/src/main.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/Emulator.dir
   POST_BUILD = :

@@ -37,6 +37,7 @@ class CPU{
         void push(const RegsID id);
         void pop(const RegsID id);
 
+        void step();
         uint8_t fetch();
         void execute(uint8_t opcode);
         void executeCB(uint8_t opcode);

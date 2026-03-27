@@ -6,6 +6,7 @@ cmake_policy(SET CMP0009 NEW)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/*.cpp")
 set(OLD_GLOB
   "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/CPU.cpp"
+  "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/Emulator.cpp"
   "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/Memory.cpp"
   "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/main.cpp"
   )

@@ -5,7 +5,7 @@
 CPU::CPU(Memory* mem){
     std::cout << "CPU initialized\n";
     std::fill(registers+0, registers+8, 0);
-    programCounter = 0;
+    programCounter = 0x0100;
     stackPointer = 0xFFFE;
     flags = {
         .carry = false,
@@ -110,6 +110,11 @@ void CPU::pop(const RegsID id){
     uint16_t val = this->mem->readMemory16(this->stackPointer);
     this->stackPointer+=2;
     this->writeRegister(id, val);
+}
+
+void CPU::step(){
+    const uint8_t opcode = this->fetch();
+    this->execute(opcode);
 }
 
 uint8_t CPU::fetch(){
