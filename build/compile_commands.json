@@ -1,0 +1,26 @@
+[
+{
+  "directory": "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build",
+  "command": "/usr/bin/g++ -I/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/includes -g -std=c++17 -o CMakeFiles/Emulator.dir/src/CPU.cpp.o -c /home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/CPU.cpp",
+  "file": "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/CPU.cpp",
+  "output": "CMakeFiles/Emulator.dir/src/CPU.cpp.o"
+},
+{
+  "directory": "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build",
+  "command": "/usr/bin/g++ -I/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/includes -g -std=c++17 -o CMakeFiles/Emulator.dir/src/Emulator.cpp.o -c /home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/Emulator.cpp",
+  "file": "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/Emulator.cpp",
+  "output": "CMakeFiles/Emulator.dir/src/Emulator.cpp.o"
+},
+{
+  "directory": "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build",
+  "command": "/usr/bin/g++ -I/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/includes -g -std=c++17 -o CMakeFiles/Emulator.dir/src/Memory.cpp.o -c /home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/Memory.cpp",
+  "file": "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/Memory.cpp",
+  "output": "CMakeFiles/Emulator.dir/src/Memory.cpp.o"
+},
+{
+  "directory": "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build",
+  "command": "/usr/bin/g++ -I/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/includes -g -std=c++17 -o CMakeFiles/Emulator.dir/src/main.cpp.o -c /home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/main.cpp",
+  "file": "/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/src/main.cpp",
+  "output": "CMakeFiles/Emulator.dir/src/main.cpp.o"
+}
+]

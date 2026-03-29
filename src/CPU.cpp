@@ -64,7 +64,8 @@ uint16_t CPU::fetch(){
 void CPU::execute(){
     try{
         uint16_t opcode = this->fetch();
-        switch(opcode & 0xF000){ //first byte
+        uint8_t family = (opcode & 0xF000)>>12;
+        switch(family){ //first byte
             case 0x0:
                 if(opcode == 0x00E0){
                     //CLEAR DISPLAY
@@ -108,20 +109,150 @@ void CPU::execute(){
                     }
                 }
                 break;
-            case 0x6://Store/Set
+            case 0x6://Store/Set immediate value
                 {
                     uint8_t reg = (opcode&0x0F00)>>8;
                     uint8_t value = (opcode&0x00FF);
                     this->V[reg] = value;
                 }
                 break;
-            case 0x7://Add to register(silent no flag)
+            case 0x7://Add to register(silent no flag) immediate value
                 {
                     uint8_t reg = (opcode&0x0F00)>>8;
                     uint8_t value = (opcode&0x00FF);
                     this->V[reg] += value;
                 }
-                break;   
+                break;
+            case 0x8: // ALU
+                {
+                    uint8_t operation = (opcode&0x000F);
+                    switch(operation){
+                        case 0x0:
+                            {
+                                uint8_t reg1 = (opcode & 0x0F00) >> 8;
+                                uint8_t reg2 = (opcode & 0x00F0) >> 4;
+                                this->V[reg1] = this->V[reg2];
+                            }
+                            break;
+                        case 0x1:
+                            {
+                                uint8_t reg1 = (opcode & 0x0F00) >> 8;
+                                uint8_t reg2 = (opcode & 0x00F0) >> 4;
+                                this->V[reg1] = this->V[reg1] | this->V[reg2];
+                            }
+                            break;
+                        case 0x2:
+                            {
+                                uint8_t reg1 = (opcode & 0x0F00) >> 8;
+                                uint8_t reg2 = (opcode & 0x00F0) >> 4;
+                                this->V[reg1] = this->V[reg1] & this->V[reg2];
+                            }
+                            break;
+                        case 0x3:
+                            {
+                                uint8_t reg1 = (opcode & 0x0F00) >> 8;
+                                uint8_t reg2 = (opcode & 0x00F0) >> 4;
+                                this->V[reg1] = this->V[reg1] ^ this->V[reg2];
+                            }
+                            break;
+                        case 0x4:
+                            {
+                                uint8_t reg1 = (opcode & 0x0F00) >> 8;
+                                uint8_t reg2 = (opcode & 0x00F0) >> 4;
+
+                                //Check if it carries and update the flags
+                                uint8_t temp_flag;
+                                uint16_t result = this->V[reg1] + this->V[reg2];                              
+                                if(result > 0xFF)
+                                    temp_flag = 1;
+                                else temp_flag= 0;
+
+                                this->V[reg1] = this->V[reg1] + this->V[reg2];
+                                
+                                this->V[0XF] = temp_flag;
+                            }
+                            break;
+                        case 0x5:
+                            {
+                                uint8_t reg1 = (opcode & 0x0F00) >> 8;
+                                uint8_t reg2 = (opcode & 0x00F0) >> 4;
+                                
+                                //Check if it borrows
+                                uint8_t temp_flag;
+                                if(this->V[reg1] >= this->V[reg2])
+                                    temp_flag = 1;
+                                else temp_flag = 0;
+
+                                this->V[reg1] = this->V[reg1] - this->V[reg2];
+
+                                this->V[0XF] = temp_flag;
+                            }
+                            break;
+                        case 0x6:
+                            {
+                                uint8_t reg1 = (opcode & 0x0F00) >> 8;
+                                uint8_t reg2 = (opcode & 0x00F0) >> 4;
+
+                                uint8_t temp_flag;
+                                temp_flag = this->V[reg1] % 2;
+
+                                this->V[reg1] = this->V[reg1] >> 1;
+
+                                this->V[0xF] = temp_flag;
+                            }
+                            break;
+                        case 0x7:
+                            {
+                                uint8_t reg1 = (opcode & 0x0F00) >> 8;
+                                uint8_t reg2 = (opcode & 0x00F0) >> 4;
+
+                                //Check if it borrows
+                                uint8_t temp_flag;
+                                if(this->V[reg2] >= this->V[reg1])
+                                    temp_flag = 1;
+                                else temp_flag = 0;
+                                this->V[reg1] = this->V[reg2] - this->V[reg1];
+
+                                this->V[0XF] = temp_flag;
+                            }
+                            break;
+                        case 0xE:
+                            {
+                                uint8_t reg1 = (opcode & 0x0F00) >> 8;
+                                uint8_t reg2 = (opcode & 0x00F0) >> 4;
+
+                                //set the flag register with the bit that gets deleted;
+                                uint8_t temp_flag;
+                                temp_flag= (this->V[reg1] >> 7) % 2;
+
+                                this->V[reg1] = this->V[reg1] << 1;
+                                
+                                this->V[0xF] = temp_flag;
+                            }
+                            break;
+                    }
+                }
+                break;
+            case 0x9:
+                {
+
+                }
+                break;
+            case 0xA:
+                {
+
+                }
+                break;
+            case 0xB:
+                {
+
+                }
+                break;
+            case 0xC:
+                {
+
+                }
+                break;
             //Complete other families 
         }
     }catch(std::exception& e){
