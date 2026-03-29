@@ -3,14 +3,11 @@
 #include <stdexcept>
 
 Emulator::Emulator()
-    : memory(), cpu(&memory) {}
+    : memory(), cpu(&memory){}
 
 
 
-void Emulator::run(std::size_t steps) {
-    for (std::size_t i = 0; i < steps; ++i) {
-        cpu.step();
-    }
+void Emulator::run() {
 }
 void Emulator::loadRom(const std::string& path){
     std::ifstream romFile(path, std::ios::binary | std::ios::ate);
@@ -34,9 +31,10 @@ void Emulator::loadRom(const std::string& path){
         if (!romFile) {
             throw std::runtime_error("Failed while reading ROM file: " + path);
         }
-        this->memory.writeMemory8(static_cast<uint16_t>(i), static_cast<uint8_t>(byte));
+        this->memory.write(static_cast<uint16_t>(i), static_cast<uint8_t>(byte));
     }
 }
+
 CPU& Emulator::getCPU() {
     return cpu;
 }

@@ -1,18 +1,20 @@
 #pragma once
 
 #include <cstdint>
-#include <cstddef>
-
-constexpr size_t MEM_SIZE = 0x10000;
+#include <stdexcept>
+#include <string>
+constexpr size_t MEM_SIZE = 4096;
 
 class Memory{
+        
     private:
-        uint8_t mem[MEM_SIZE];
+        uint8_t mem[MEM_SIZE]{};
+        uint16_t stack[16]{};
     public:
         Memory();
-        uint8_t readMemory8(uint16_t address);
-        void writeMemory8(uint16_t address, uint8_t value);
-        uint16_t readMemory16(uint16_t address);
-        void writeMemory16(uint16_t address, uint16_t value);
-        
+
+        const uint8_t read(const uint16_t address) const;
+        void write(const uint16_t address,const uint8_t value);
+
+        uint16_t* getStack();
 };

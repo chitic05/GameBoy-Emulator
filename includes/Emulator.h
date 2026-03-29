@@ -14,9 +14,9 @@ private:
 public:
     Emulator();
 
-    void run(std::size_t steps);
+    void run();
     void loadRom(const std::string& path);
-    
+        
     CPU& getCPU();
     Memory& getMemory();
     
