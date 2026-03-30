@@ -50,64 +50,67 @@ void Emulator::run() {
     bool isRunning = true;
     SDL_Event event;
     while(isRunning){
-        while(SDL_PollEvent(&event)){
+        try{
+            while(SDL_PollEvent(&event)){
             if(event.type == SDL_EVENT_QUIT)
-            isRunning = false;
-        }
-        now = SDL_GetPerformanceCounter();
+                isRunning = false;
+            }
+            now = SDL_GetPerformanceCounter();
 
-        {//update keys
-            cpu.setKey(0x1, keyState[SDL_SCANCODE_1]);
-            cpu.setKey(0x2, keyState[SDL_SCANCODE_2]);
-            cpu.setKey(0x3, keyState[SDL_SCANCODE_3]);
-            cpu.setKey(0xC, keyState[SDL_SCANCODE_4]);
+            {//update keys
+                cpu.setKey(0x1, keyState[SDL_SCANCODE_1]);
+                cpu.setKey(0x2, keyState[SDL_SCANCODE_2]);
+                cpu.setKey(0x3, keyState[SDL_SCANCODE_3]);
+                cpu.setKey(0xC, keyState[SDL_SCANCODE_4]);
+                
+                cpu.setKey(0x4, keyState[SDL_SCANCODE_Q]);
+                cpu.setKey(0x5, keyState[SDL_SCANCODE_W]);
+                cpu.setKey(0x6, keyState[SDL_SCANCODE_E]);
+                cpu.setKey(0xD, keyState[SDL_SCANCODE_R]);
+                
+                cpu.setKey(0x7, keyState[SDL_SCANCODE_A]);
+                cpu.setKey(0x8, keyState[SDL_SCANCODE_S]);
+                cpu.setKey(0x9, keyState[SDL_SCANCODE_D]);
+                cpu.setKey(0xE, keyState[SDL_SCANCODE_F]);
+                
+                cpu.setKey(0xA, keyState[SDL_SCANCODE_Z]);
+                cpu.setKey(0x0, keyState[SDL_SCANCODE_X]);
+                cpu.setKey(0xB, keyState[SDL_SCANCODE_C]);
+                cpu.setKey(0xF, keyState[SDL_SCANCODE_V]);
+            }      
+            //run cpu for more cycles
+            for(size_t i = 0;i<10;++i)
+                cpu.run();
             
-            cpu.setKey(0x4, keyState[SDL_SCANCODE_Q]);
-            cpu.setKey(0x5, keyState[SDL_SCANCODE_W]);
-            cpu.setKey(0x6, keyState[SDL_SCANCODE_E]);
-            cpu.setKey(0xD, keyState[SDL_SCANCODE_R]);
-            
-            cpu.setKey(0x7, keyState[SDL_SCANCODE_A]);
-            cpu.setKey(0x8, keyState[SDL_SCANCODE_S]);
-            cpu.setKey(0x9, keyState[SDL_SCANCODE_D]);
-            cpu.setKey(0xE, keyState[SDL_SCANCODE_F]);
-            
-            cpu.setKey(0xA, keyState[SDL_SCANCODE_Z]);
-            cpu.setKey(0x0, keyState[SDL_SCANCODE_X]);
-            cpu.setKey(0xB, keyState[SDL_SCANCODE_C]);
-            cpu.setKey(0xF, keyState[SDL_SCANCODE_V]);
-        }      
-        //run cpu for more cycles
-        for(size_t i = 0;i<10;++i)
-            cpu.run();
-        
-        cpu.updateTimers();
+            cpu.updateTimers();
 
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
-        
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+            SDL_RenderClear(renderer);
+            
+            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
-        for(size_t i = 0; i<32; ++i){
-            for(size_t j = 0; j<64; ++j){
-                if(cpu.getPixels()[i*64+j]){
-                    SDL_FRect pixelRect = {j * 20.0f, i * 20.0f, 20.0f, 20.0f};
-                    SDL_RenderFillRect(renderer, &pixelRect);
+            for(size_t i = 0; i<32; ++i){
+                for(size_t j = 0; j<64; ++j){
+                    if(cpu.getPixels()[i*64+j]){
+                        SDL_FRect pixelRect = {j * 20.0f, i * 20.0f, 20.0f, 20.0f};
+                        SDL_RenderFillRect(renderer, &pixelRect);
+                    }
                 }
             }
-        }
-        SDL_RenderPresent(renderer);
+            SDL_RenderPresent(renderer);
 
-        // FRAME TIMING
+            // FRAME TIMING
 
-        double frameTime = static_cast<double>(SDL_GetPerformanceCounter()-now)/SDL_GetPerformanceFrequency(); // how much second this while loop took(frame)
-        double delayTime = targetFrameTime-frameTime;
-        if(delayTime > 0){
-            SDL_Delay(static_cast<uint32_t>(delayTime*1000)); // transform to seconds;
+            double frameTime = static_cast<double>(SDL_GetPerformanceCounter()-now)/SDL_GetPerformanceFrequency(); // how much second this while loop took(frame)
+            double delayTime = targetFrameTime-frameTime;
+            if(delayTime > 0){
+                SDL_Delay(static_cast<uint32_t>(delayTime*1000)); // transform to seconds;
+            }
+        }catch(std::exception& e){
+            std::cerr << e.what()<<'\n';
+            isRunning = false;
         }
     }
-
-    cpu.run();
 
 }
 void Emulator::loadRom(const std::string& path){
