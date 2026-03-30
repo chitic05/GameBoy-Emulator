@@ -4,16 +4,19 @@
 #include "CPU.h"
 #include "Memory.h"
 #include <string>
-
+#include <SDL3/SDL.h>
 
 class Emulator {
 private:
+    SDL_Window* window = nullptr;
+    SDL_Renderer* renderer = nullptr;
+    const bool* keyState = nullptr;
     Memory memory;
     CPU cpu;
 
 public:
     Emulator();
-
+    ~Emulator();
     void run();
     void loadRom(const std::string& path);
         

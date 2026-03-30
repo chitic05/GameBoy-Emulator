@@ -1,3 +1,8 @@
 /home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build/CMakeFiles/Emulator.dir
 /home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build/CMakeFiles/edit_cache.dir
 /home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build/CMakeFiles/rebuild_cache.dir
+/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build/externals/SDL3/CMakeFiles/SDL3-shared.dir
+/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build/externals/SDL3/CMakeFiles/SDL3_test.dir
+/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build/externals/SDL3/CMakeFiles/SDL_uclibc.dir
+/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build/externals/SDL3/CMakeFiles/edit_cache.dir
+/home/david/Altele/Proiecte/cpp/GameBoy-Emulator/build/externals/SDL3/CMakeFiles/rebuild_cache.dir

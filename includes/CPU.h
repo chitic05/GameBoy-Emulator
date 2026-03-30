@@ -6,9 +6,21 @@ class CPU{
     private:
         uint8_t V[16]{}; //registers 0x0 to 0xF
         Memory* mem;
+
         uint16_t programCounter{0x200};
         uint16_t stackPointer{};
         uint16_t I{}; //register for graphics
+
+        struct{
+            bool pixels[32*64]{};        
+        } display;
+        struct{
+            bool pressed[16]{};
+        }keypad;
+        struct{
+            uint8_t delayTimer{};
+            uint8_t soundTimer{};
+        }timers;
 
     public:
         CPU(Memory* mem);
@@ -21,4 +33,12 @@ class CPU{
 
         uint16_t fetch();
         void execute();
+
+        void run();
+
+        const bool* getPixels() const;
+
+        void setKey(uint8_t key, bool val);
+
+        void updateTimers();
 };
