@@ -6,7 +6,7 @@
 Emulator::Emulator()
     : memory(), cpu(&memory){
 
-        if(SDL_Init(SDL_INIT_VIDEO) < 0){
+        if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0){
             std::cerr << "SDL Init failed: " << SDL_GetError() << std::endl;
             std::exit(1);
         }
@@ -27,15 +27,31 @@ Emulator::Emulator()
         keyState = SDL_GetKeyboardState(nullptr);
         if (!keyState)
             std::cerr << "Couldn't get the keyboard state\n";
+
+        SDL_AudioSpec spec;
+        spec.freq = 44100;           // 44100 de eșantioane pe secundă (standard CD)
+        spec.format = SDL_AUDIO_F32; // Numere cu virgulă mobilă (-1.0 la 1.0)
+        spec.channels = 1;           // Mono (un singur difuzor)
+
+        audioStream = SDL_OpenAudioDeviceStream(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, &spec, NULL, NULL);
+        if (audioStream) {
+            SDL_ResumeAudioStreamDevice(audioStream); // Pornește "țeava" către boxe
+        } else {
+            std::cerr << "Audio init failed: " << SDL_GetError() << "\n";
+        }
 }
 
 Emulator::~Emulator(){
     if(this->renderer){
         SDL_DestroyRenderer(this->renderer);
     }
+    if(this->audioStream){
+        SDL_DestroyAudioStream(this->audioStream);
+    }
     if(this->window){
         SDL_DestroyWindow(this->window);
     }
+
 }
 
 
@@ -98,6 +114,34 @@ void Emulator::run() {
                 }
             }
             SDL_RenderPresent(renderer);
+
+            //SOUND
+
+            if (cpu.getSoundTimer()> 0) {
+                // Dacă jocul vrea sunet și buffer-ul e gol, pompăm niște zgomot
+                if (SDL_GetAudioStreamAvailable(audioStream) < 4096) {
+                    const int sampleRate = 44100;
+                    const int toneHz = 440; // Frecvența BEEP-ului (440Hz = nota La)
+                    const int samplesToWrite = 2048; 
+                    float buffer[samplesToWrite];
+                    
+                    static int sampleIndex = 0; // Ține minte unde am rămas
+                    const int halfPeriod = sampleRate / toneHz / 2;
+                    
+                    for (int i = 0; i < samplesToWrite; ++i) {
+                        // Dacă suntem în prima jumătate a perioadei, volum 0.1 (pozitiv)
+                        // Dacă suntem în a doua jumătate, volum -0.1 (negativ)
+                        buffer[i] = ((sampleIndex / halfPeriod) % 2 == 0) ? 0.1f : -0.1f;
+                        sampleIndex++;
+                    }
+                    
+                    // Trimite unda pătrată către boxe
+                    SDL_PutAudioStreamData(audioStream, buffer, sizeof(buffer));
+                }
+            } else {
+                // Dacă jocul NU vrea sunet, curățăm "țeava" ca să se oprească instant Beep-ul
+                SDL_ClearAudioStream(audioStream); 
+            }
 
             // FRAME TIMING
 

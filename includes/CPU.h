@@ -40,5 +40,7 @@ class CPU{
 
         void setKey(uint8_t key, bool val);
 
+        const uint8_t getSoundTimer() const;
         void updateTimers();
+
 };

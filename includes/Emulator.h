@@ -10,6 +10,8 @@ class Emulator {
 private:
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
+    SDL_AudioStream* audioStream = nullptr;
+
     const bool* keyState = nullptr;
     Memory memory;
     CPU cpu;

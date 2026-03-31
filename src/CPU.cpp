@@ -436,6 +436,10 @@ void CPU::setKey(uint8_t key, bool val){
     this->keypad.pressed[key] = val;
 }
 
+const uint8_t CPU::getSoundTimer() const{
+    return this->timers.soundTimer;
+}
+
 void CPU::updateTimers() {
     if (this->timers.delayTimer > 0) this->timers.delayTimer--;
     if (this->timers.soundTimer > 0) this->timers.soundTimer--;
