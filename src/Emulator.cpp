@@ -35,7 +35,7 @@ Emulator::Emulator()
 
         audioStream = SDL_OpenAudioDeviceStream(SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, &spec, NULL, NULL);
         if (audioStream) {
-            SDL_ResumeAudioStreamDevice(audioStream); // Pornește "țeava" către boxe
+            SDL_ResumeAudioStreamDevice(audioStream); // Pornește stream către boxe
         } else {
             std::cerr << "Audio init failed: " << SDL_GetError() << "\n";
         }
